@@ -1,0 +1,28 @@
+/**
+* @package		JJ Accordion
+* @author		JoomJunk
+* @copyright	Copyright (C) 2011 - 2012 JoomJunk. All Rights Reserved
+* @license		http://www.gnu.org/licenses/gpl-3.0.html
+*/
+
+#accordion { 
+	width: 100%; 
+	list-style: none; 
+}
+#accordion h3.jjheader{ 
+	padding: 8px 8px 8px 8px; 
+	font-weight: bold; 
+	font-size: 12px; 
+	color: #666666;
+	margin-top: 5px; 
+	cursor: pointer; 
+	border: 1px solid #444444;
+	border-radius: 8px;
+	background: #151515;
+}
+#accordion .accordion-section {
+	overflow: hidden;
+}
+#accordion .accordion-content {
+	padding: 6px; 
+}

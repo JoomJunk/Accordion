@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="2.5" method="upgrade">
+	<name>JJ Accordion</name> 
+	<author>JoomJunk</author> 
+	<creationDate>13th Nov 2011</creationDate> 
+	<copyright>Copyright (C) 2012 JoomJunk</copyright> 
+	<license>http://www.gnu.org/licenses/gpl-3.0.html</license> 
+	<authorEmail>admin@joomjunk.co.uk</authorEmail> 
+	<authorUrl>http://www.joomjunk.co.uk</authorUrl> 
+	<version>2.0.2</version> 
+	<description>JJACCORDIONDESC</description>
+	
+	<files>
+		<filename module="mod_accordion">mod_accordion.php</filename>
+		<filename>index.html</filename>
+		<filename>helper.php</filename>
+		<folder>assets</folder>
+		<folder>tmpl</folder>
+	</files>
+ 
+    <languages folder="language">
+        <language tag="en-GB">en-GB/en-GB.mod_accordion.ini</language>
+        <language tag="en-GB">en-GB/en-GB.mod_accordion.sys.ini</language>
+    </languages>
+	
+	<updateservers>
+		<server type="extension" name="JJ Accordion" priority="1">http://www.joomjunk.co.uk/updates/accordion_update.xml</server>
+	</updateservers>
+ 
+    <config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="@spacer" type="spacer" default="&lt;div id=&quot;image_1&quot; style=&quot;font-weight:normal;font-size:12px;color:#fff;padding:4px;margin:0;background:#666;&quot;&gt;Accordion Settings&lt;/div&gt;" label="" description="" />	
+				<field name="catid" type="category" extension="com_content" default="0" label="JJ_CATEGORY" description="JJ_CATEGORY_DESC" />
+				<field name="items" type="text" default="" label="JJ_NUMBER_OF_ARTICLES" description="JJ_NUMBER_OF_ARTICLES_DESC" />
+				<field name="show_order" type="list" default="o_asc" label="JJ_ORDER" description="JJ_ORDER_DESC">
+					<option value="a.ordering">JJ_ARTICLE_ORDER</option>
+					<option value="a.hits">JJ_MOST_POPULAR</option>	
+				</field>
+				<field name="open" type="radio" default="1" label="JJ_FIRST_PANEL_OPEN" description="JJ_FIRST_PANEL_OPEN_DESC">
+					<option value="0">JJ_NO</option>
+					<option value="1">JJ_YES</option>
+				</field>
+				<field name="multi" type="radio" default="0" label="JJ_ALLOW_MULTIPLE_OPEN" description="JJ_ALLOW_MULTIPLE_OPEN_DESC">
+					<option value="0">JJ_NO</option>
+					<option value="1">JJ_YES</option>
+				</field>
+				<field name="image" type="radio" default="1" label="JJ_SHOW_IMAGES" description="JJ_SHOW_IMAGES_DESC">
+					<option value="0">JJ_NO</option>
+					<option value="1">JJ_YES</option>
+				</field>
+				<field name="readmore" type="radio" default="1" label="JJ_READ_MORE" description="JJ_READ_MORE_DESC">
+					<option value="0">JJ_HIDE</option>
+					<option value="1">JJ_SHOW</option>
+				</field>
+				<field name="textlimit" type="text" default="25" label="JJ_TEXT_LIMIT" description="JJ_TEXT_LIMIT_DESC" />
+		
+				<field name="@spacer1" type="spacer" default="&lt;div id=&quot;image_1&quot; style=&quot;font-weight:normal;font-size:12px;color:#fff;padding:4px;margin:0;background:#666;&quot;&gt;Style Settings&lt;/div&gt;" label="" description="" />
+				<field name="jj_style" type="list" default="light" label="JJ_STYLE" description="JJ_STYLE_DESC">
+					<option value="light">JJ_LIGHT</option>
+					<option value="dark">JJ_DARK</option>
+					<option value="bootstrap">JJ_BOOTSTRAP</option>
+					<option value="custom">JJ_CUSTOM</option>				
+				</field>
+				<field name="headerbg" type="text" default="CCCCCC" label="JJ_HEADER_BACKGROUND_COLOUR" description="JJ_HEADER_BACKGROUND_COLOUR_DESC" />
+				<field name="headerbordercolor" type="text" default="999999" label="JJ_HEADER_BORDER_COLOUR" description="JJ_HEADER_BORDER_COLOUR_DESC" />
+				<field name="headertextcolor" type="text" default="999999" label="JJ_HEADER_TEXT_COLOUR" description="JJ_HEADER_TEXT_COLOUR_DESC" />
+			</fieldset>
+		</fields>
+	</config>
+	
+</extension>
