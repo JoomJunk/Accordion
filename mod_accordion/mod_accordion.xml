@@ -31,7 +31,7 @@
 		<fields name="params">
 			<fieldset name="basic">
 				<field name="@spacer" type="spacer" default="&lt;div id=&quot;image_1&quot; style=&quot;font-weight:normal;font-size:12px;color:#fff;padding:4px;margin:0;background:#666;&quot;&gt;Accordion Settings&lt;/div&gt;" label="" description="" />	
-				<field name="catid" type="category" extension="com_content" default="0" label="JJ_CATEGORY" description="JJ_CATEGORY_DESC" />
+				<field name="catid" type="category" extension="com_content" default="0" label="JJ_CATEGORY" description="JJ_CATEGORY_DESC" multiple="multiple" />
 				<field name="items" type="text" default="" label="JJ_NUMBER_OF_ARTICLES" description="JJ_NUMBER_OF_ARTICLES_DESC" />
 				<field name="show_order" type="list" default="o_asc" label="JJ_ORDER" description="JJ_ORDER_DESC">
 					<option value="a.ordering">JJ_ARTICLE_ORDER</option>
