@@ -15,6 +15,9 @@ $ -> Language fix or change
 - -> Removed
 ! -> Note
 
+Version 2.0.3
++ Allow multiple categories to be selected
+
 Version 2.0.2
 
 # Missing language file strings updated
