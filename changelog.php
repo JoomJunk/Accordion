@@ -17,6 +17,7 @@ $ -> Language fix or change
 
 Version 2.1.0
 + Allow multiple categories to be selected
+- Remove Joomla 1.5 support
 
 Version 2.0.2
 
