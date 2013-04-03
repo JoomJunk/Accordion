@@ -15,7 +15,7 @@ $ -> Language fix or change
 - -> Removed
 ! -> Note
 
-Version 2.0.3
+Version 2.1.0
 + Allow multiple categories to be selected
 
 Version 2.0.2

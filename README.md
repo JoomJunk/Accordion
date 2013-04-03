@@ -1,6 +1,6 @@
 Accordion
 ========
-JoomJunk Accordion - A PHP accordion designed for use on Joomla sites
+JoomJunk Accordion - A PHP accordion designed for use on Joomla 2.5/3.0 sites
 
 Please see the changelog for detailed information about recent changes
 
