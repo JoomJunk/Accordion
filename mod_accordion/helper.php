@@ -135,8 +135,6 @@ class modAccordionHelper{
 	
 	//Joomla 3.x
 	function renderItem30($item, $params, $access) {
-		global $mainframe;
-
 		$user = JFactory::getUser();
 
 		$item->text 	= $item->introtext;
