@@ -15,6 +15,10 @@ $ -> Language fix or change
 - -> Removed
 ! -> Note
 
+Version 2.1.1
++ Improve the truncation of text
+# Remove $mainframe use in the Joomla 3.x retrieval of articles
+
 Version 2.1.0
 + Allow multiple categories to be selected
 - Remove Joomla 1.5 support

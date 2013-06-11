@@ -30,14 +30,7 @@ defined('_JEXEC') or die('Restricted access');
 						if(version_compare(JVERSION,'3.0','ge')) {
 								$item = modAccordionHelper::renderItem30($listitem, $params, $access);
 							if ($params->get('readmore')) {
-								$words=$params->get('textlimit', 25);
-								$counter = count(explode(" ",$item->introtext));
-								if($counter>$words) {
-									$array=array();
-									$array = explode(" ", $item->introtext);
-									array_splice($array, $words);
-									$item->introtext = implode(" ", $array)." ...<br />";
-								}
+								modAccordionHelper::truncate($item->introtext, $params->get('textlimit', 25), $ending = '...', true, true);
 							}						
 
 							echo $item->introtext;
@@ -48,14 +41,7 @@ defined('_JEXEC') or die('Restricted access');
 						} 
 						else {
 							if ($params->get('readmore')) {
-								$words=$params->get('textlimit', 25);
-								$counter = count(explode(" ",$listitem->introtext));
-								if($counter>$words) {
-									$array=array();
-									$array = explode(" ", $listitem->introtext);
-									array_splice($array, $words);
-									$listitem->introtext = implode(" ", $array)." ...<br />";
-								}
+								modAccordionHelper::truncate($item->introtext, $params->get('textlimit', 25), $ending = '...', true, true);
 							}
 						
 							echo $listitem->introtext;
