@@ -15,9 +15,11 @@ $ -> Language fix or change
 - -> Removed
 ! -> Note
 
-Version 2.1.1
+Version 2.2.0
 + Improve the truncation of text
-# Remove $mainframe use in the Joomla 3.x retrieval of articles
++ Improve method of retrieving the Joomla Articles
+# Joomla 2.5 and 3.x render in the same way
+# Alpha order language strings and rename some to be in a more consistent way
 
 Version 2.1.0
 + Allow multiple categories to be selected
