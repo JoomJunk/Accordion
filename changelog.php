@@ -17,7 +17,6 @@ $ -> Language fix or change
 
 Version 2.2.0
 + Improve the truncation of text
-+ Use integer form field for the main words field
 + Improve method of retrieving the Joomla Articles
 # Joomla 2.5 and 3.x render in the same way
 # Alpha order language strings and rename some to be in a more consistent way
