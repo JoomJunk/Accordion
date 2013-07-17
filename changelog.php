@@ -15,6 +15,10 @@ $ -> Language fix or change
 - -> Removed
 ! -> Note
 
+Version 2.2.1
+# Number of items parameter was broken
+# Ordering parameter was broken
+
 Version 2.2.0
 + Improve the truncation of text
 + Improve method of retrieving the Joomla Articles
