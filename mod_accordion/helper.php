@@ -70,7 +70,7 @@ class ModAccordionHelper
 		$model->setState('filter.language', $app->getLanguageFilter());
 
 		// Set ordering
-		$ordering = $params->get('ordering', 'a.publish_up');
+		$ordering = $params->get('show_order', 'a.publish_up');
 		$model->setState('list.ordering', $ordering);
 
 		if (trim($ordering) == 'rand()')
@@ -192,7 +192,7 @@ class ModAccordionHelper
 		}
 
 		// Ordering
-		$articles->setState('list.ordering', $params->get('article_ordering', 'a.ordering'));
+		$articles->setState('list.ordering', $params->get('show_order', 'a.ordering'));
 		$articles->setState('list.direction', $params->get('article_ordering_direction', 'ASC'));
 
 		// Show featured items
