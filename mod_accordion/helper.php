@@ -50,7 +50,7 @@ class ModAccordionHelper
 
 		// Set the filters based on the module params
 		$model->setState('list.start', 0);
-		$model->setState('list.limit', (int) $params->get('count', 5));
+		$model->setState('list.limit', (int) $params->get('items', 5));
 
 		$model->setState('filter.published', 1);
 
@@ -139,7 +139,7 @@ class ModAccordionHelper
 
 		// Set the filters based on the module params
 		$articles->setState('list.start', 0);
-		$articles->setState('list.limit', (int) $params->get('count', 0));
+		$articles->setState('list.limit', (int) $params->get('items', 5));
 		$articles->setState('filter.published', 1);
 
 		// Access filter
