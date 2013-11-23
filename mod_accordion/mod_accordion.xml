@@ -40,7 +40,7 @@
 		<fields name="params">
 			<fieldset name="basic">
 				<field name="catid" type="category" extension="com_content" default="0" label="MOD_ACCORDION_CATEGORY" description="MOD_ACCORDION_CATEGORY_DESC" multiple="multiple" />
-				<field name="items" type="text" default="" label="MOD_ACCORDION_NUMBER_OF_ARTICLES" description="MOD_ACCORDION_NUMBER_OF_ARTICLES_DESC" />
+				<field name="items" type="text" default="5" label="MOD_ACCORDION_NUMBER_OF_ARTICLES" description="MOD_ACCORDION_NUMBER_OF_ARTICLES_DESC" />
 				<field name="show_order" type="list" default="o_asc" label="MOD_ACCORDION_ORDER" description="MOD_ACCORDION_ORDER_DESC">
 					<option value="a.ordering">MOD_ACCORDION_ARTICLE_ORDER</option>
 					<option value="a.hits">MOD_ACCORDION_MOST_POPULAR</option>
