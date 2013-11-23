@@ -7,14 +7,13 @@
 	<license>http://www.gnu.org/licenses/gpl-3.0.html</license> 
 	<authorEmail>admin@joomjunk.co.uk</authorEmail> 
 	<authorUrl>http://www.joomjunk.co.uk</authorUrl> 
-	<version>2.2.1</version>
+	<version>3.0</version>
 	<description>JJACCORDIONDESC</description>
 	
 	<files>
 		<filename module="mod_accordion">mod_accordion.php</filename>
 		<filename>index.html</filename>
 		<filename>helper.php</filename>
-		<folder>assets</folder>
 		<folder>tmpl</folder>
 	</files>
  
@@ -26,11 +25,20 @@
 	<updateservers>
 		<server type="extension" name="JJ Accordion" priority="1">http://www.joomjunk.co.uk/updates/accordion_update.xml</server>
 	</updateservers>
+	
+	<scriptfile>script.php</scriptfile>
+	
+	<media folder="media" destination="mod_accordion">
+		<folder>css</folder>
+		<folder>js</folder>
+		<filename>index.html</filename>
+		<filename>arrow-down.png</filename>
+		<filename>arrow-right.png</filename>
+	</media>
  
     <config>
 		<fields name="params">
 			<fieldset name="basic">
-				<field name="@spacer" type="spacer" default="&lt;div id=&quot;image_1&quot; style=&quot;font-weight:normal;font-size:12px;color:#fff;padding:4px;margin:0;background:#666;&quot;&gt;Accordion Settings&lt;/div&gt;" label="" description="" />	
 				<field name="catid" type="category" extension="com_content" default="0" label="MOD_ACCORDION_CATEGORY" description="MOD_ACCORDION_CATEGORY_DESC" multiple="multiple" />
 				<field name="items" type="text" default="" label="MOD_ACCORDION_NUMBER_OF_ARTICLES" description="MOD_ACCORDION_NUMBER_OF_ARTICLES_DESC" />
 				<field name="show_order" type="list" default="o_asc" label="MOD_ACCORDION_ORDER" description="MOD_ACCORDION_ORDER_DESC">
@@ -38,10 +46,6 @@
 					<option value="a.hits">MOD_ACCORDION_MOST_POPULAR</option>
 				</field>
 				<field name="open" type="radio" default="1" label="MOD_ACCORDION_FIRST_PANEL_OPEN" description="MOD_ACCORDION_FIRST_PANEL_OPEN_DESC">
-					<option value="0">JNO</option>
-					<option value="1">JYES</option>
-				</field>
-				<field name="multi" type="radio" default="0" label="MOD_ACCORDION_ALLOW_MULTIPLE_OPEN" description="MOD_ACCORDION_ALLOW_MULTIPLE_OPEN_DESC">
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
@@ -53,9 +57,11 @@
 					<option value="0">MOD_ACCORDION_HIDE</option>
 					<option value="1">MOD_ACCORDION_SHOW</option>
 				</field>
-				<field name="textlimit" type="text" default="25" label="MOD_ACCORDION_TEXT_LIMIT" description="MOD_ACCORDION_TEXT_LIMIT_DESC" />
-		
-				<field name="@spacer1" type="spacer" default="&lt;div id=&quot;image_1&quot; style=&quot;font-weight:normal;font-size:12px;color:#fff;padding:4px;margin:0;background:#666;&quot;&gt;Style Settings&lt;/div&gt;" label="" description="" />
+				<field name="textlimit" type="text" default="25" label="MOD_ACCORDION_TEXT_LIMIT" description="MOD_ACCORDION_TEXT_LIMIT_DESC" />	
+				<field name="arrow" type="radio" default="1" label="MOD_ACCORDION_ARROW" description="MOD_ACCORDION_ARROW_DESC">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>	
 				<field name="jj_style" type="list" default="light" label="MOD_ACCORDION_STYLE" description="MOD_ACCORDION_STYLE_DESC">
 					<option value="light">MOD_ACCORDION_LIGHT</option>
 					<option value="dark">MOD_ACCORDION_DARK</option>
