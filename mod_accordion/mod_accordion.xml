@@ -16,7 +16,7 @@
 		<filename>helper.php</filename>
 		<folder>assets</folder>
 		<folder>tmpl</folder>
-		<folder>languages</folder>
+		<folder>language</folder>
 	</files>
 	
 	<updateservers>
