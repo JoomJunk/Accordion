@@ -14,13 +14,9 @@
 		<filename module="mod_accordion">mod_accordion.php</filename>
 		<filename>index.html</filename>
 		<filename>helper.php</filename>
+		<folder>language</folder>
 		<folder>tmpl</folder>
 	</files>
- 
-    <languages folder="language">
-        <language tag="en-GB">en-GB/en-GB.mod_accordion.ini</language>
-        <language tag="en-GB">en-GB/en-GB.mod_accordion.sys.ini</language>
-    </languages>
 	
 	<updateservers>
 		<server type="extension" name="JJ Accordion" priority="1">http://www.joomjunk.co.uk/updates/accordion_update.xml</server>
