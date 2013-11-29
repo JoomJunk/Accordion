@@ -15,6 +15,13 @@ $ -> Language fix or change
 - -> Removed
 ! -> Note
 
+
+Version 3.0.0
+^ Accordion has been completely rewritten and now use jQuery
+- Code cleanup
++ Added arrow icons showing an active/inactive tab
+^ Moved all CSS, JS and images to assets folder allowing template overrides
+
 Version 2.2.1
 # Number of items parameter was broken
 # Ordering parameter was broken
