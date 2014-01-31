@@ -15,6 +15,8 @@ $ -> Language fix or change
 - -> Removed
 ! -> Note
 
+Version 3.0.1
+# Fixed bug in install script
 
 Version 3.0.0
 ^ Accordion has been completely rewritten and now use jQuery
