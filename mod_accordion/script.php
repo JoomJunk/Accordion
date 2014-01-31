@@ -9,11 +9,11 @@
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * Social Slider installation script class.
+ * Accordion installation script class.
  *
  * @since  3.0.0
  */
-class Mod_Social_SliderInstallerScript
+class Mod_AccordionInstallerScript
 {
 	/**
 	 * @var		string	The version number of the module.
