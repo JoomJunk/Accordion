@@ -16,7 +16,6 @@
 		<filename>helper.php</filename>
 		<folder>language</folder>
 		<folder>tmpl</folder>
-		<folder>language</folder>
 	</files>
 
 	<languages folder="language">
