@@ -1,5 +1,5 @@
 <?php
-// no direct access
+// No direct access
 die('Restricted access');
 
 ?>
@@ -14,6 +14,9 @@ $ -> Language fix or change
 ^ -> Change
 - -> Removed
 ! -> Note
+
+Version 3.0.2
+# Fix function giving fatal error when upgrading from version 2 of accordion
 
 Version 3.0.1
 # Fixed bug in install script

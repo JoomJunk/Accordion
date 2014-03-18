@@ -1,0 +1,264 @@
+<?xml version="1.0"?>
+<!--
+	JJ Accordion build file for Phing
+	(C) George Wilson 2014
+	
+	Thanks to Marco Dings and Nicholas Dionysopoulos as I've extensively borrowed
+	from their own build scripts. 
+	
+	Run##" phing" from the build directory to build the module,
+	or run it from PHP Storm after registering it as a phing buiild file (right click)
+
+	Dependancies
+	============
+	- Pear
+	- Phing
+	- Phing/VersionControl_Git
+	- A valid SSL certificate for uploading assets to GitHub
+-->
+<project name="JJ Accordion" description="JJ Accordion Module" default="all" >
+	<property file="./build.properties" />
+	
+	<!--						   DIRECTORY DEFINITIONS					 -->
+	<!-- The project root -->
+	<property name="dirs.root" value=".." />
+	<!-- Where the installation packages will be constructed -->
+	<property name="dirs.staging" value="../staging" />
+	<property name="dirs.git" value="C:\Users\George\AppData\Local\GitHub\PortableGit_054f2e797ebafd44a30203088cd3d58663c627ef\bin\git.exe" />
+
+	<!-- Where the installation packages will be output -->
+	<property name="ext_mod.src" value="modules/mod_accordion" />
+	<property name="ext_mod.dst" value="mod_accordion" />
+	<!-- Default version number - CHANGE ON UPDATE;                          -->
+	<property name="version" value="3.0.2" />
+	<!-- GitHub Information                                                  -->
+	<property name="github.repo" value="Accordion" />
+	<property name="github.owner" value="JoomJunk" />
+
+	<!--							CUSTOM PHING TASKS						 -->
+	<!-- The ZipMe task is a major improvement over the plain old Zip task   -->
+	<taskdef name="zipme" classname="phingext.ZipmeTask" />
+	<!-- The GitUpload allows us to upload the zip and tarball to GitHub release   -->
+	<taskdef name="Gitupload" classname="phingext.GituploadTask" />
+
+	<!--
+	====================================================================================================
+	Generates the files in the correct structure and generates the zip. We could just run extension
+	zip though!
+	====================================================================================================
+	-->
+	<target name="all" description="Makes everything"
+		depends="setup-properties,stage-extensions,extension-zip">
+	</target>
+
+	<!--
+	====================================================================================================
+	Sets up the version and properties for the token replacement for later
+	====================================================================================================
+	-->
+	<target name="setup-properties" description="Set up version and build properties">
+		<condition property="surpress_tokens" value="false">
+			<not>
+				<isset property="surpress_tokens"/>
+			</not>
+		</condition>
+		<if>
+			<equals arg1="${surpress_tokens}" arg2="1" />
+			<then>
+				<property name="COPYRIGHT"   value="##COPYRIGHT##"   override="true"/>
+				<property name="AUTHOR"      value="##AUTHOR##"      override="true"/>
+				<property name="AUTHOREMAIL" value="##AUTHOREMAIL##" override="true"/>
+				<property name="AUTHORURL"   value="##AUTHORURL##"   override="true"/>
+				<property name="LICENSE"     value="##LICENSE##"     override="true"/>
+				<property name="PACKAGE"     value="##PACKAGE##"     override="true"/>
+			</then>
+		</if>
+	</target>
+
+	<!--
+	====================================================================================================
+	Defines the core files needed to be copied to the staging folder
+	====================================================================================================
+	-->
+	<fileset dir="${dirs.root}" id="accordionlangfiles">
+		<include name="language/**" />
+	</fileset>
+	<fileset dir="${dirs.root}/modules/mod_accordion" id="accordioncorefiles">
+		<include name="**" />
+	</fileset>
+	<fileset dir="${dirs.root}/media/mod_accordion" id="accordionmediafiles">
+		<include name="**" />
+	</fileset>
+
+	<!--
+	====================================================================================================
+	Tasks - stage-extensions
+			copy files to staging, replace tokens, relocate files
+	====================================================================================================
+	-->
+	<target name="stage-extensions" description="Stages the common files" depends="setup-properties">
+		<echo msg="Preparing JJ Accordion Module" />
+		<property name="ext_src" value="${ext_mod.src}" override="true"/>
+		<property name="ext_dst" value="${ext_mod.dst}" override="true"/>
+		<if>
+			<equals arg1="${surpress_tokens}" arg2="1"/>
+			<then>
+				<property name="EXTENSION" value="##EXTENSION##" override="true"/>
+			</then>
+			<else>
+				<property name="EXTENSION" value="${ext_mod.dst}" override="true"/>
+			</else>
+		</if>
+		<!-- Make the directory and then copy core files into it -->
+		<mkdir dir="${dirs.staging}" />
+		<copy todir="${dirs.staging}/${ext_dst}" includeemptydirs="false">
+			<fileset refid="accordioncorefiles" />
+			<fileset refid="accordionlangfiles" />
+			<filterchain>
+				<replacetokens begintoken="##" endtoken="##">
+					<token key="VERSION"        value="${version}" />
+					<!-- These can be "suppressed" -->
+					<token key="COPYRIGHT"      value="${COPYRIGHT}" />
+					<token key="AUTHOR"         value="${AUTHOR}" />
+					<token key="AUTHOREMAIL"    value="${AUTHOREMAIL}" />
+					<token key="AUTHORURL"      value="${AUTHORURL}" />
+					<token key="LICENSE"        value="${LICENSE}" />
+					<token key="PACKAGE"        value="${PACKAGE}" />
+				</replacetokens>
+			</filterchain>
+		<!-- Copy core media files into the staging directory -->
+		</copy>
+		<copy todir="${dirs.staging}/${ext_dst}/media" includeemptydirs="false">
+			<fileset refid="accordionmediafiles" />
+			<filterchain>
+				<replacetokens begintoken="##" endtoken="##">
+					<token key="VERSION"        value="${version}" />
+					<!-- These can be "suppressed" -->
+					<token key="COPYRIGHT"      value="${COPYRIGHT}" />
+					<token key="AUTHOR"         value="${AUTHOR}" />
+					<token key="AUTHOREMAIL"    value="${AUTHOREMAIL}" />
+					<token key="AUTHORURL"      value="${AUTHORURL}" />
+					<token key="LICENSE"        value="${LICENSE}" />
+					<token key="PACKAGE"        value="${PACKAGE}" />
+				</replacetokens>
+			</filterchain>
+		<!-- Copy core files into it -->
+		</copy>
+	</target>
+
+	<!--
+	====================================================================================================
+	Sets the supress_tokens to be true
+	====================================================================================================
+	-->
+	<target name="surpress-tokens" description="Set up version and build properties">
+		<property name="surpress_tokens" value="true" override="true" />
+		<echo msg="surpress_tokens ${surpress_tokens}" />
+	</target>
+
+	<!--
+	====================================================================================================
+	Puts the extension in the staging folder as in stage-extensions but without swapping out the tokens
+	Will also not generate the zip and tar.gz files
+	====================================================================================================
+	-->
+	<target name="stage-extensions-token-free"
+	        description="Stages the common files, without extending tokens"
+	        depends="surpress-tokens,setup-properties,stage-extensions">
+		<!-- "surpress-tokens" in depends MUST be first in list  -->
+	</target>
+
+	<!--
+	====================================================================================================
+	Tags the repo on github
+	====================================================================================================
+	-->
+	<target name="tag-github">
+		<resolvepath propertyName="repo.dir.resolved" file="${dirs.root}" />
+		<!-- Ensure development is checked out and we have the latest version -->
+		<gitcheckout
+			repository="${repo.dir.resolved}"
+			branchname="development"
+			gitPath="${dirs.git}"
+		/>
+		<gitpull
+			repository="${repo.dir.resolved}"
+			gitPath="${dirs.git}"
+		/>
+		<!-- Create tag with annotation and message -->
+		<gittag
+			repository="${repo.dir.resolved}"
+			name="${version}"
+			annotate="true"
+			message="Version ${version} tag"
+			gitPath="${dirs.git}"
+		/>
+		<!-- Push the tag -->
+		<gitpush
+			repository="${repo.dir.resolved}"
+			refspec="${version}"
+			tags="true"
+			gitPath="${dirs.git}"
+		/>
+		<!-- Merge the development branch into master -->
+		<gitcheckout
+			repository="${repo.dir.resolved}"
+			branchname="master"
+			gitPath="${dirs.git}"
+		/>
+		<gitmerge
+			repository="${repo.dir.resolved}"
+			remote="development"
+			message="merging repos"
+			commit="true"
+			gitPath="${dirs.git}"
+		/>
+		<!-- Check back out development for the next round of dev work :) -->
+		<gitcheckout
+			repository="${repo.dir.resolved}"
+			branchname="development"
+			gitPath="${dirs.git}"
+		/>
+	</target>
+
+	<!--
+	====================================================================================================
+	Creates a zip and tarball of the package
+	====================================================================================================
+	-->
+	<target name="extension-zip" description="Component package build" 
+		depends="setup-properties,stage-extensions">
+
+		<!-- Create the package -->
+		<zipme
+			destFile="${dirs.root}/build/${ext_dst}-${version}.zip"
+			includeEmptyDirs="true"
+		>
+			<fileset dir="${dirs.staging}/${ext_dst}">
+				<include name="**" />
+			</fileset>
+		</zipme>
+		<tar destfile="${dirs.root}/build/${ext_dst}-${version}.tar.gz" compression="gzip">
+			<fileset dir="${dirs.staging}/${ext_dst}">
+				<include name="*" />
+			</fileset>
+		</tar>
+		<delete dir="${dirs.staging}" />
+	</target>
+
+	<!--
+	====================================================================================================
+	Uploads the zip and tarball to github
+	====================================================================================================
+	-->
+	<fileset dir="${dirs.root}/build" id="zipfiles">
+		<include name="*.tar.gz" />
+		<include name="*.zip" />
+	</fileset>
+
+	<target name="upload-github" description="Upload a zip and tarball to GitHub" depends="extension-zip">
+		<Gitupload version="${version}" owner="${github.owner}" repo="${github.repo}">
+			<fileset refid="zipfiles" />
+		</Gitupload>
+	</target>
+</project>

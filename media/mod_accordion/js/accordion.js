@@ -1,3 +1,9 @@
+/**
+ * @package    ##PACKAGE##
+ * @author     ##AUTHOR## <##AUTHOREMAIL##>
+ * @copyright  ##COPYRIGHT##
+ * @license    ##LICENSE##
+ */
 $(document).ready(function(){
 
 	$('.jjaccordion-header').toggleClass('inactive-header');

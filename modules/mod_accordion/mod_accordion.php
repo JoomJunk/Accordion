@@ -1,10 +1,10 @@
-<?php
+ <?php
 /**
- * @package    JJ_Accordion
- * @author     JoomJunk <admin@joomjunk.co.uk>
- * @copyright  Copyright (C) 2011 - 2013 JoomJunk. All Rights Reserved
- * @license    GNU General Public License version 3; http://www.gnu.org/licenses/gpl-3.0.html
-*/
+ * @package    ##PACKAGE##
+ * @author     ##AUTHOR## <##AUTHOREMAIL##>
+ * @copyright  ##COPYRIGHT##
+ * @license    ##LICENSE##
+ */
 
 // No direct access
 defined('_JEXEC') or die('Restricted access');
