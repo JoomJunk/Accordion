@@ -99,21 +99,17 @@ $document->addScriptDeclaration("
 		
 		" . $open . "		
 
-		$('.jjaccordion-header').click(function() {
-							
+		$('.jjaccordion-header').on('click', function(){
+										
 			var self = $(this);
-			var accordion = self.parents('.jjaccordion');
 			var wrapper = self.parents('.jjaccordion-wrapper');
 			var content = wrapper.children('.jjaccordion-content');
-			var allWrapper = accordion.children('.jjaccordion-wrapper');
-			var allContent = allWrapper.find('.jjaccordion-content');
-						
-			allWrapper.removeClass('jjopen');
-			allContent.slideUp();
+			var siblings = wrapper.siblings('.jjopen');
 			
-			wrapper.addClass('jjopen');
-			content.stop(true, false).slideDown();	
-			
+			siblings.removeClass('jjopen').children('.jjaccordion-content').slideUp('fast');
+			wrapper.addClass('jjopen');		
+			content.slideDown('fast');
+	
 		});
 			
 	});
