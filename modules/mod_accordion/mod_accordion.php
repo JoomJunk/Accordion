@@ -46,16 +46,16 @@ $document = JFactory::getDocument();
 
 if ($params->get('arrow', '1'))
 {
-	$arrow = '.jjaccordion .jjaccordion-arrow { '
-		. 'background: url(' . JURI::root() . 'media/mod_accordion/arrow-right.png) no-repeat;'
+	$arrow = '.jjaccordion .jjaccordion-wrapper .jjaccordion-header .jjaccordion-arrow { '
+		. 'background: url(' . JUri::root() . 'media/mod_accordion/arrow-right.png) no-repeat;'
 		. 'display: block;'
 		. 'height: 15px; '
 		. 'width: 15px; '
 		. 'float: left; '
 		. 'padding-right: 10px;'
 		. '}'
-		. '.jjaccordion .jjaccordion-header.active-header .jjaccordion-arrow { '
-		. 'background: url(' . JURI::root() . 'media/mod_accordion/arrow-down.png) no-repeat;'
+		. '.jjaccordion .jjaccordion-wrapper.jjopen .jjaccordion-header .jjaccordion-arrow { '
+		. 'background: url(' . JUri::root() . 'media/mod_accordion/arrow-down.png) no-repeat;'
 		. '}';
 	$document->addStyleDeclaration($arrow);
 }
@@ -63,7 +63,7 @@ if ($params->get('arrow', '1'))
 switch ($jj_style)
 {
 	case "custom":
-		$document->addStyleSheet(JURI::root() . 'media/mod_accordion/css/accordion.css');
+		$document->addStyleSheet(JUri::root() . 'media/mod_accordion/css/accordion.css');
 		$jj_style = '.jjaccordion .jjaccordion-header {'
 		. 'background:#' . $params->get('headerbg') . ';'
 		. 'border: 1px solid #' . $params->get('headerbordercolor') . ';'
@@ -72,19 +72,21 @@ switch ($jj_style)
 		$document->addStyleDeclaration($jj_style);
 		break;
 	case "dark":
-		$document->addStyleSheet(JURI::root() . 'media/mod_accordion/css/accordion-dark.css');
+		$document->addStyleSheet(JUri::root() . 'media/mod_accordion/css/accordion-dark.css');
 		break;
 	case "bootstrap":
-		$document->addStyleSheet(JURI::root() . 'media/mod_accordion/css/accordion-bootstrap.css');
+		$document->addStyleSheet(JUri::root() . 'media/mod_accordion/css/accordion-bootstrap.css');
 		break;
 	default:
-		$document->addStyleSheet(JURI::root() . 'media/mod_accordion/css/accordion-light.css');
+		$document->addStyleSheet(JUri::root() . 'media/mod_accordion/css/accordion-light.css');
 }
 
 if ($params->get('open', '1'))
 {
-	$open = "$('.jjaccordion-header').first().toggleClass('active-header').toggleClass('inactive-header');
-			 $('.jjaccordion-content').first().slideDown().toggleClass('open-content');";
+	$open = " var first = $('.jjaccordion').find('.jjaccordion-content').slice(0,1);				
+			  first.parents('.jjaccordion-wrapper').addClass('jjopen');	
+			  first.slideDown();				
+			";
 }
 else 
 {
@@ -93,29 +95,28 @@ else
 
 $document->addScriptDeclaration("
 
-	(function($){
-		$(document).ready(function(){
+	jQuery(document).ready(function($){	
+		
+		" . $open . "		
 
-			$('.jjaccordion-header').toggleClass('inactive-header');
+		$('.jjaccordion-header').click(function() {
+							
+			var self = $(this);
+			var accordion = self.parents('.jjaccordion');
+			var wrapper = self.parents('.jjaccordion-wrapper');
+			var content = wrapper.children('.jjaccordion-content');
+			var allWrapper = accordion.children('.jjaccordion-wrapper');
+			var allContent = allWrapper.find('.jjaccordion-content');
+						
+			allWrapper.removeClass('jjopen');
+			allContent.slideUp();
 			
-			" . $open . "
+			wrapper.addClass('jjopen');
+			content.stop(true, false).slideDown();	
 			
-			$('.jjaccordion-header').click(function () {
-				if($(this).is('.inactive-header')) {
-					$('.active-header').toggleClass('active-header').toggleClass('inactive-header').next().slideToggle('fast').toggleClass('open-content');
-					$(this).toggleClass('active-header').toggleClass('inactive-header');
-					$(this).next().slideToggle('fast').toggleClass('open-content');
-				}
-				
-				else {
-					$(this).toggleClass('active-header').toggleClass('inactive-header');
-					$(this).next().slideToggle('fast').toggleClass('open-content');
-				}
-			});
-			
-			return false;
 		});
-	})(jQuery);
+			
+	});
 	
 ");
 
