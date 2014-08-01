@@ -167,6 +167,7 @@ class Mod_AccordionInstallerScript
 
 		// Delete bootstrap css file and JS folder
 		JFile::delete(JUri::root() . 'media/'. $this->extension . '/css/accordion-bootstrap.css');
+		JFile::delete(JUri::root() . 'media/'. $this->extension . '/css/accordion-light.css');
 		JFolder::delete(JPATH_ROOT . '/media/'. $this->extension . '/js');
 
 		$modules = $this->getInstances(true);
