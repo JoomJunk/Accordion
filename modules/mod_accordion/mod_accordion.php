@@ -35,7 +35,7 @@ $document = JFactory::getDocument();
 if ($params->get('arrow', '1'))
 {
 	$arrow = '.jjaccordion .accordion-toggle:after { '
-		. 'background: url(' . JURI::root() . 'media/mod_accordion/arrow-right.png) no-repeat;'
+		. 'background: url(' . JUri::root() . 'media/mod_accordion/arrow-right.png) no-repeat;'
 		. 'display: block;'
 		. 'height: 15px; '
 		. 'width: 15px; '
@@ -43,7 +43,7 @@ if ($params->get('arrow', '1'))
 		. 'padding-right: 10px;'
 		. '}'
 		. '.jjaccordion .accordion-toggle collapsed:after { '
-		. 'background: url(' . JURI::root() . 'media/mod_accordion/arrow-down.png) no-repeat;'
+		. 'background: url(' . JUri::root() . 'media/mod_accordion/arrow-down.png) no-repeat;'
 		. '}';
 	$document->addStyleDeclaration($arrow);
 }
