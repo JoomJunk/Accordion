@@ -51,7 +51,7 @@ if ($params->get('arrow', '1'))
 switch ($jj_style)
 {
 	case "custom":
-		$document->addStyleSheet(JUru::root() . 'media/mod_accordion/css/accordion.css');
+		$document->addStyleSheet(JUri::root() . 'media/mod_accordion/css/accordion.css');
 		$jj_style = '.jjaccordion .jjaccordion-header {'
 		. 'background:#' . $params->get('headerbg') . ';'
 		. 'border: 1px solid #' . $params->get('headerbordercolor') . ';'
