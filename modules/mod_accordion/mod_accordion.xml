@@ -30,7 +30,6 @@
 	
 	<media folder="media" destination="mod_accordion">
 		<folder>css</folder>
-		<folder>js</folder>
 		<filename>index.html</filename>
 		<filename>arrow-down.png</filename>
 		<filename>arrow-right.png</filename>
