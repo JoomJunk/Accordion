@@ -151,4 +151,30 @@ class Mod_AccordionInstallerScript
 
 		return $array;
 	}
+	
+	/**
+	 * Function to update the file structure for the Accordion 4.0.0 updates
+	 *
+	 * @return  void
+	 *
+	 * @since  4.0.0
+	 */
+	protected function update400()
+	{
+		// Import dependencies
+		jimport('joomla.filesystem.folder');
+		jimport('joomla.filesystem.file');
+
+		// Delete bootstrap css file and JS folder
+		JFile::delete(JUri::root() . 'media/'. $this->extension . '/css/accordion-bootstrap.css');
+		JFolder::delete(JPATH_ROOT . '/media/'. $this->extension . '/js');
+
+		$modules = $this->getInstances(true);
+
+		foreach ($modules as $module)
+		{
+
+		}
+	}
+	
 }

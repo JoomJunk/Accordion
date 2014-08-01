@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="module" version="2.5" method="upgrade">
+<extension type="module" version="3.0" method="upgrade">
 	<name>JJ Accordion</name> 
 	<author>##AUTHOR##</author> 
 	<creationDate>13th Nov 2011</creationDate> 
@@ -49,7 +49,10 @@
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
-				<field name="multi" type="hidden" default="0" />
+				<field name="multi" type="radio" default="0" label="Multi" description="Multi desc">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
 				<field name="image" type="radio" default="1" label="MOD_ACCORDION_SHOW_IMAGES" description="MOD_ACCORDION_SHOW_IMAGES_DESC">
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>

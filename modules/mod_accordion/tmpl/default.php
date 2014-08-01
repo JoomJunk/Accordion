@@ -13,6 +13,11 @@ defined('_JEXEC') or die('Restricted access');
 
 <div class="jjaccordion">
 	<?php
+	
+	echo JHtml::_('bootstrap.startAccordion', $acc_id, array(
+		'active' => $open
+	));
+	
 	for ($i = 0; $i < $items; $i++)
 	{
 		$listitem = $list[$i];
@@ -27,40 +32,36 @@ defined('_JEXEC') or die('Restricted access');
 		{
 			$item_class .= " last";
 		}
-		?>
 		
-		<div class="jjaccordion-wrapper">
+		echo JHtml::_('bootstrap.addSlide', $multi, $listitem->title, $acc_id.$i);
+
 		
-			<h3 class="jjaccordion-header"><span class="jjaccordion-arrow"></span><?php echo $listitem->title; ?></h3>
+				if ($params->get('image') && !empty($listitem->images))
+				{
+					$images = json_decode($listitem->images);
 
-			<div class="jjaccordion-content">
-				<?php
-					if ($params->get('image') && !empty($listitem->images))
+					if (!empty($images->image_intro))
 					{
-						$images = json_decode($listitem->images);
-
-						if (!empty($images->image_intro) && !empty($images->image_intro_alt))
-						{
-							echo '<image src="' . $images->image_intro . '" alt="' . $images->image_intro_alt . '" height="20px" />';
-						}
+						echo '<p><img src="' . $images->image_intro . '" alt="" /></p>';
 					}
+				}
 
-					if ($params->get('readmore'))
-					{
-						$listitem->introtext = ModAccordionHelper::truncate($listitem->introtext, $params->get('textlimit', 25), $ending = '...', false, true, false);
-					}
+				if ($params->get('readmore'))
+				{
+					$listitem->introtext = ModAccordionHelper::truncate($listitem->introtext, $params->get('textlimit', 25), $ending = '...', false, true, false);
+				}
 
-					echo $listitem->introtext;
+				echo '<div>' . $listitem->introtext . '</div>';
 
-					if (isset($listitem->link) && $params->get('readmore'))
-					{
-						echo '<br /><a class="readmore btn btn-small btn-primary" href="' . $listitem->link . '">' . JText::_('MOD_ACCORDION_READ_MORE') . '</a>';
-					}
-				?>
-			</div>
-			
-		</div>
-	<?php
+				if (isset($listitem->link) && $params->get('readmore'))
+				{
+					echo '<br /><a class="readmore btn btn-small btn-primary" href="' . $listitem->link . '">' . JText::_('MOD_ACCORDION_READ_MORE') . '</a>';
+				}
+
+				
+				
+		echo JHtml::_('bootstrap.endSlide');
 	}
+	echo JHtml::_('bootstrap.endAccordion');
 	?>
 </div>
