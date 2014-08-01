@@ -16,7 +16,7 @@ $access->canEdit	= 0;
 $access->canEditOwn = 0;
 $access->canPublish = 0;
 
-$list = ModAccordionHelper::getList30($params);
+$list = ModAccordionHelper::getList($params);
 JHtml::_('jquery.framework');
 
 $items = count($list);
@@ -50,17 +50,8 @@ if ($params->get('arrow', '1'))
 
 switch ($jj_style)
 {
-	case "custom":
-		$document->addStyleSheet(JUri::root() . 'media/mod_accordion/css/accordion.css');
-		$jj_style = '.jjaccordion .jjaccordion-header {'
-		. 'background:#' . $params->get('headerbg') . ';'
-		. 'border: 1px solid #' . $params->get('headerbordercolor') . ';'
-		. 'color:#' . $params->get('headertextcolor') . ';'
-		. '}';
-		$document->addStyleDeclaration($jj_style);
-		break;
 	case "dark":
-		$document->addStyleSheet(JUri::root() . 'media/mod_accordion/css/accordion-dark.css');
+		JHtml::_('stylesheet', 'mod_accordion/css/accordion-dark.css', array(), true);
 		break;
 	default:
 		// nothing here
