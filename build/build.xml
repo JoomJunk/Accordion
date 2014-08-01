@@ -30,7 +30,7 @@
 	<property name="ext_mod.src" value="modules/mod_accordion" />
 	<property name="ext_mod.dst" value="mod_accordion" />
 	<!-- Default version number - CHANGE ON UPDATE;                          -->
-	<property name="version" value="3.0.2" />
+	<property name="version" value="4.0.0" />
 	<!-- GitHub Information                                                  -->
 	<property name="github.repo" value="Accordion" />
 	<property name="github.owner" value="JoomJunk" />
