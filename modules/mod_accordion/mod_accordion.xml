@@ -69,12 +69,7 @@
 				<field name="jj_style" type="list" default="light" label="MOD_ACCORDION_STYLE" description="MOD_ACCORDION_STYLE_DESC">
 					<option value="light">MOD_ACCORDION_LIGHT</option>
 					<option value="dark">MOD_ACCORDION_DARK</option>
-					<option value="bootstrap">MOD_ACCORDION_BOOTSTRAP</option>
-					<option value="custom">MOD_ACCORDION_CUSTOM</option>
 				</field>
-				<field name="headerbg" type="text" default="CCCCCC" label="MOD_ACCORDION_HEADER_BACKGROUND_COLOUR" description="MOD_ACCORDION_HEADER_BACKGROUND_COLOUR_DESC" />
-				<field name="headerbordercolor" type="text" default="999999" label="MOD_ACCORDION_HEADER_BORDER_COLOUR" description="MOD_ACCORDION_HEADER_BORDER_COLOUR_DESC" />
-				<field name="headertextcolor" type="text" default="999999" label="MOD_ACCORDION_HEADER_TEXT_COLOUR" description="MOD_ACCORDION_HEADER_TEXT_COLOUR_DESC" />
 			</fieldset>
 		</fields>
 	</config>
