@@ -63,6 +63,12 @@ class Mod_AccordionInstallerScript
 				{
 					$this->update300();
 				}
+				
+				// Update to for v4.0.0
+				if (version_compare($oldRelease, '4.0.0', '<='))
+				{
+					$this->update400();
+				}
 			}
 		}
 	}
@@ -165,17 +171,14 @@ class Mod_AccordionInstallerScript
 		jimport('joomla.filesystem.folder');
 		jimport('joomla.filesystem.file');
 
-		// Delete bootstrap css file and JS folder
-		JFile::delete(JUri::root() . 'media/'. $this->extension . '/css/accordion-bootstrap.css');
-		JFile::delete(JUri::root() . 'media/'. $this->extension . '/css/accordion-light.css');
+		// Delete defined folder and files
+		JFile::delete(JPATH_ROOT . '/media/'. $this->extension . '/css/accordion-bootstrap.css');
+		JFile::delete(JPATH_ROOT . '/media/'. $this->extension . '/css/accordion-light.css');
+		JFile::delete(JPATH_ROOT . '/media/'. $this->extension . '/css/accordion-dark.css');
+		JFile::delete(JPATH_ROOT . '/media/'. $this->extension . '/arrow-down.png');
+		JFile::delete(JPATH_ROOT . '/media/'. $this->extension . '/arrow-right.png');
 		JFolder::delete(JPATH_ROOT . '/media/'. $this->extension . '/js');
 
-		$modules = $this->getInstances(true);
-
-		foreach ($modules as $module)
-		{
-
-		}
 	}
 	
 }
