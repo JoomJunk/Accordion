@@ -18,6 +18,7 @@ $ -> Language fix or change
 Version 3.0.2
 # Fix error in updating accordion
 # Fix accordion breaking when there's multiple instances on a page
+^ Update to jQuery 1.11.1
 
 Version 3.0.1
 # Fixed bug in install script
