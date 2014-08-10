@@ -50,11 +50,11 @@ if ($params->get('arrow', '1'))
 {
 	$arrow = '.jjaccordion .jjaccordion-arrow { '
 		. 'background: url(' . JUri::root() . 'media/mod_accordion/arrow-right.png) no-repeat;'
-		. 'display: block;'
+		. 'display: inline-block;'
 		. 'height: 15px; '
 		. 'width: 15px; '
-		. 'float: left; '
 		. 'padding-right: 10px;'
+		. 'vertical-align: middle;'
 		. '}'
 		. '.jjaccordion .jjaccordion-header.active-header .jjaccordion-arrow { '
 		. 'background: url(' . JUri::root() . 'media/mod_accordion/arrow-down.png) no-repeat;'
@@ -94,29 +94,30 @@ else
 }
 
 $document->addScriptDeclaration("
-	(function($){
-		$(document).ready(function(){
+	jQuery(document).ready(function($) {
 
-			$('#accordion" . $id . " .jjaccordion-header').toggleClass('inactive-header');
+		$('#accordion" . $id . " .jjaccordion-header').toggleClass('inactive-header');
 
-			" . $open . "
+		" . $open . "
 
-			$('#accordion" . $id . " .jjaccordion-header').click(function () {
-				if($(this).is('#accordion" . $id . " .inactive-header')) {
-					$('#accordion" . $id . " .active-header').toggleClass('active-header').toggleClass('inactive-header').next().slideToggle('fast').toggleClass('open-content');
-					$(this).toggleClass('active-header').toggleClass('inactive-header');
-					$(this).next().slideToggle('fast').toggleClass('open-content');
-				}
+		$('#accordion" . $id . " .jjaccordion-header').click(function () {
+			
+			var self = $(this);
+			
+			if(self.is('#accordion" . $id . " .inactive-header')) {
+				$('#accordion" . $id . " .active-header').toggleClass('active-header').toggleClass('inactive-header').next().slideToggle('fast').toggleClass('open-content');
+				self.toggleClass('active-header').toggleClass('inactive-header');
+				self.next().slideToggle('fast').toggleClass('open-content');
+			}
 
-				else {
-					$(this).toggleClass('active-header').toggleClass('inactive-header');
-					$(this).next().slideToggle('fast').toggleClass('open-content');
-				}
-			});
-
-			return false;
+			else {
+				self.toggleClass('active-header').toggleClass('inactive-header');
+				self.next().slideToggle('fast').toggleClass('open-content');
+			}
 		});
-	})(jQuery);
+
+		return false;
+	});
 ");
 
 require JModuleHelper::getLayoutPath('mod_accordion', 'default');
