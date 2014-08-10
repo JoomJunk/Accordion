@@ -58,7 +58,11 @@
 					<option value="0">MOD_ACCORDION_HIDE</option>
 					<option value="1">MOD_ACCORDION_SHOW</option>
 				</field>
-				<field name="textlimit" type="text" default="25" label="MOD_ACCORDION_TEXT_LIMIT" description="MOD_ACCORDION_TEXT_LIMIT_DESC" />	
+				<field name="textlimit" type="text" default="25" label="MOD_ACCORDION_TEXT_LIMIT" description="MOD_ACCORDION_TEXT_LIMIT_DESC" />
+				<field name="bootstrap" type="radio" default="0" label="MOD_ACCORDION_INCLUDE_BOOTSTRAP" description="MOD_ACCORDION_INCLUDE_BOOTSTRAP_DESC">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
 			</fieldset>
 		</fields>
 	</config>
