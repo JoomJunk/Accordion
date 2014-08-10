@@ -3,8 +3,9 @@
  * @package    JJ_Accordion
  * @author     JoomJunk <admin@joomjunk.co.uk>
  * @copyright  Copyright (C) 2011 - 2013 JoomJunk. All Rights Reserved
- * @license    GPL v3.0 or later http://www.gnu.org/licenses/gpl-3.0.html
+ * @license    GNU General Public License version 3; http://www.gnu.org/licenses/gpl-3.0.html
  */
+
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
@@ -113,10 +114,41 @@ class Mod_AccordionInstallerScript
 			&& JFile::move(JUri::root() . 'modules/'. $this->extension . '/assets/accordion.css', JUri::root() . 'media/'. $this->extension . '/css/accordion.css')
 			&& JFile::move(JUri::root() . 'modules/'. $this->extension . '/assets/accordion-bootstrap.css', JUri::root() . 'media/'. $this->extension . '/css/accordion-bootstrap.css')
 			&& JFile::move(JUri::root() . 'modules/'. $this->extension . '/assets/accordion-dark.css', JUri::root() . 'media/'. $this->extension . '/accordion-dark.css')
-			&& JFile::move(JUri::root() . 'modules/'. $this->extension . '/assets/accordion-light.css', JUri::root() . 'media/'. $this->extension . '/accordion-light.css'))			
+			&& JFile::move(JUri::root() . 'modules/'. $this->extension . '/assets/accordion-light.css', JUri::root() . 'media/'. $this->extension . '/accordion-light.css'))
 		{
 			// We can now delete the folder
 			JFolder::delete(JPATH_ROOT . '/modules/'. $this->extension . '/assets');
 		}
+	}
+
+	/**
+	 * Builds a standard select query to produce better DRY code in this script.
+	 * This should produce a single unique cell which is json encoded
+	 *
+	 * @param   string  $element     The element to get from the query
+	 * @param   string  $table       The table to search for the data in
+	 * @param   string  $column      The column of the database to search from
+	 * @param   mixed   $identifier  The integer id or the already quoted string
+	 *
+	 * @return  array  associated array containing data from the cell
+	 *
+	 * @since 3.0.2
+	 */
+	protected function getItemArray($element, $table, $column, $identifier)
+	{
+		// Get the DB and query objects
+		$db = JFactory::getDbo();
+		$query = $db->getQuery(true);
+
+		// Build the query
+		$query->select($db->quoteName($element))
+			->from($db->quoteName($table))
+			->where($db->quoteName($column) . ' = ' . $identifier);
+		$db->setQuery($query);
+
+		// Load the single cell and json_decode data
+		$array = json_decode($db->loadResult(), true);
+
+		return $array;
 	}
 }
