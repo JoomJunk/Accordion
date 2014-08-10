@@ -50,11 +50,11 @@ if ($params->get('arrow', '1'))
 {
 	$arrow = '.jjaccordion .jjaccordion-arrow { '
 		. 'background: url(' . JUri::root() . 'media/mod_accordion/arrow-right.png) no-repeat;'
-		. 'display: block;'
+		. 'display: inline-block;'
 		. 'height: 15px; '
 		. 'width: 15px; '
-		. 'float: left; '
 		. 'padding-right: 10px;'
+		. 'vertical-align: middle;'
 		. '}'
 		. '.jjaccordion .jjaccordion-header.active-header .jjaccordion-arrow { '
 		. 'background: url(' . JUri::root() . 'media/mod_accordion/arrow-down.png) no-repeat;'
