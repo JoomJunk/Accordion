@@ -11,7 +11,7 @@ defined('_JEXEC') or die('Restricted access');
 
 ?>
 
-<div class="jjaccordion">
+<div class="jjaccordion" id="accordion<?php echo $id; ?>">
 	<?php
 	for ($i = 0; $i < $items; $i++)
 	{
