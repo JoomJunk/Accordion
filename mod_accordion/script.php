@@ -63,6 +63,12 @@ class Mod_AccordionInstallerScript
 				{
 					$this->update300();
 				}
+
+				// Update to reflect remove the js file
+				if (version_compare($oldRelease, '3.0.2', '<='))
+				{
+					$this->update302();
+				}
 			}
 		}
 	}
@@ -119,6 +125,22 @@ class Mod_AccordionInstallerScript
 			// We can now delete the folder
 			JFolder::delete(JPATH_ROOT . '/modules/'. $this->extension . '/assets');
 		}
+	}
+
+	/**
+	 * Remove redundant js file.
+	 *
+	 * @return  void
+	 *
+	 * @since  3.0.2
+	 */
+	protected function update302()
+	{
+		// Import dependencies
+		jimport('joomla.filesystem.file');
+
+		// We can now delete the folder
+		JFile::delete(JPATH_ROOT . '/media/'. $this->extension . '/js/accordion.js');
 	}
 
 	/**
