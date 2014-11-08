@@ -15,6 +15,10 @@ $ -> Language fix or change
 - -> Removed
 ! -> Note
 
+Version 3.1.0
++ Added more ordering options
+# Fixed default parameter values
+
 Version 3.0.2
 # Fix error in updating accordion
 # Fix accordion breaking when there's multiple instances on a page
