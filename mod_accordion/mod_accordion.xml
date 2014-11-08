@@ -41,9 +41,16 @@
 			<fieldset name="basic">
 				<field name="catid" type="category" extension="com_content" default="0" label="MOD_ACCORDION_CATEGORY" description="MOD_ACCORDION_CATEGORY_DESC" multiple="multiple" />
 				<field name="items" type="text" default="5" label="MOD_ACCORDION_NUMBER_OF_ARTICLES" description="MOD_ACCORDION_NUMBER_OF_ARTICLES_DESC" />
-				<field name="show_order" type="list" default="o_asc" label="MOD_ACCORDION_ORDER" description="MOD_ACCORDION_ORDER_DESC">
+				<field name="show_order" type="list" default="a.publish_up" label="MOD_ACCORDION_ORDER" description="MOD_ACCORDION_ORDER_DESC">
+					<option value="a.publish_up">MOD_ACCORDION_PUBLISHED_DATE</option>
+					<option value="a.created">MOD_ACCORDION_CREATED_DATE</option>
 					<option value="a.ordering">MOD_ACCORDION_ARTICLE_ORDER</option>
 					<option value="a.hits">MOD_ACCORDION_MOST_POPULAR</option>
+					<option value="rand()">MOD_ACCORDION_RANDOM</option>
+				</field>
+				<field name="direction" type="list" default="1" label="MOD_ACCORDION_DIRECTION" description="MOD_ACCORDION_DIRECTION_DESC">
+					<option value="0">MOD_ACCORDION_DIRECTION_ASCENDING</option>
+					<option value="1">MOD_ACCORDION_DIRECTION_DESCENDING</option>
 				</field>
 				<field name="open" type="radio" default="1" label="MOD_ACCORDION_FIRST_PANEL_OPEN" description="MOD_ACCORDION_FIRST_PANEL_OPEN_DESC">
 					<option value="0">JNO</option>
