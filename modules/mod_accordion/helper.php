@@ -94,8 +94,19 @@ class ModAccordionHelper
 		}
 
 		// Ordering
-		$articles->setState('list.ordering', $params->get('show_order', 'a.ordering'));
-		$articles->setState('list.direction', $params->get('article_ordering_direction', 'ASC'));
+		$ordering = $params->get('show_order', 'a.publish_up');
+		$direction = $params->get('direction', 1) ? 'DESC' : 'ASC';
+		
+		$articles->setState('list.ordering', $ordering);
+		
+		if (trim($ordering) == 'rand()')
+		{
+			$articles->setState('list.direction', '');
+		}
+		else
+		{
+			$articles->setState('list.direction', $direction);
+		}
 
 		// Show featured items
 		$articles->setState('filter.featured', 'show');
