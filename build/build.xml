@@ -29,8 +29,8 @@
 	<!-- Where the installation packages will be output -->
 	<property name="ext_mod.src" value="modules/mod_accordion" />
 	<property name="ext_mod.dst" value="mod_accordion" />
-	<!-- Default version number - CHANGE ON UPDATE;                          -->
-	<property name="version" value="4.0.0" />
+	<!-- Version number - CHANGE ON UPDATE;                          -->
+	<property name="version" value="1.0.0" />
 	<!-- GitHub Information                                                  -->
 	<property name="github.repo" value="Accordion" />
 	<property name="github.owner" value="JoomJunk" />
