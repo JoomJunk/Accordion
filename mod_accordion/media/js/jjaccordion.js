@@ -27,7 +27,7 @@
 				var self = $(this);
 
 				if(self.is('#accordion' + options.id + ' .' + options.inactiveheader)) {
-					$('#accordion' + options.id + ' .' + options.activeheader).toggleClass(options.activeheader).toggleClass(options.inactiveheader).next().slideToggle('fast').toggleClass(options.opencontent);
+					$('#accordion' + options.id + ' .' + options.activeheader).toggleClass(options.activeheader).toggleClass(options.inactiveheader).next().slideToggle(options.speed).toggleClass(options.opencontent);
 					self.toggleClass(options.activeheader).toggleClass(options.inactiveheader);
 					self.next().slideToggle(options.speed).toggleClass(options.opencontent);
 				} else {
