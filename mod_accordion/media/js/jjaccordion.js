@@ -26,7 +26,7 @@
 			$('#accordion' + options.id + ' .' + options.header).click(function () {
 				var self = $(this);
 
-				if(self.is('#accordion' + options.id + ' .' + options.inactiveheader)) {
+				if(self.hasClass(options.inactiveheader)) {
 					$('#accordion' + options.id + ' .' + options.activeheader).toggleClass(options.activeheader).toggleClass(options.inactiveheader).next().slideToggle(options.speed).toggleClass(options.opencontent);
 					self.toggleClass(options.activeheader).toggleClass(options.inactiveheader);
 					self.next().slideToggle(options.speed).toggleClass(options.opencontent);
