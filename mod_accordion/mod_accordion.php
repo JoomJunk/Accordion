@@ -11,7 +11,9 @@ defined('_JEXEC') or die('Restricted access');
 
 require_once dirname(__FILE__) . '/helper.php';
 
-$id = $module->id;
+$id  = $module->id;
+$doc = JFactory::getDocument();
+$app = JFactory::getApplication();
 
 $access = new stdClass;
 $access->canEdit	= 0;
@@ -26,10 +28,10 @@ if (version_compare(JVERSION, '3.0', 'ge'))
 else
 {
 	$list = ModAccordionHelper::getList25($params);
-	if (!JFactory::getApplication()->get('jquery'))
+	if (!$app->get('jquery'))
 	{
-		JFactory::getApplication()->set('jquery', true);
-		JHtml::_('script', JUri::root() . 'media/mod_accordion/js/jquery.js');
+		$app->set('jquery', true);
+		JHtml::_('script', 'mod_accordion/js/jquery.js', false, true);
 	}
 }
 
@@ -42,11 +44,16 @@ if (!$items)
 	return;
 }
 
-$jj_style = $params->get('jj_style', 'light');
+// Params
+$jj_style 	= $params->get('jj_style', 'light');
+$open 		= $params->get('open', '1') == 1;
+$headerbg	= $params->get('headerbg');
+$headerbc	= $params->get('headerbordercolor');
+$headertc	= $params->get('headertextcolor');
+$arrow		= $params->get('arrow', '1');
 
-$document = JFactory::getDocument();
 
-if ($params->get('arrow', '1'))
+if ($arrow)
 {
 	$arrow = '.jjaccordion .jjaccordion-arrow { '
 		. 'background: url(' . JUri::root() . 'media/mod_accordion/arrow-right.png) no-repeat;'
@@ -59,33 +66,40 @@ if ($params->get('arrow', '1'))
 		. '.jjaccordion .jjaccordion-header.active-header .jjaccordion-arrow { '
 		. 'background: url(' . JUri::root() . 'media/mod_accordion/arrow-down.png) no-repeat;'
 		. '}';
-	$document->addStyleDeclaration($arrow);
+	$doc->addStyleDeclaration($arrow);
 }
 
 switch ($jj_style)
 {
 	case "custom":
-		$document->addStyleSheet(JUri::root() . 'media/mod_accordion/css/accordion.css');
+		$doc->addStyleSheet(JUri::root() . 'media/mod_accordion/css/accordion.css');
 		$jj_style = '.jjaccordion .jjaccordion-header {'
-		. 'background:#' . $params->get('headerbg') . ';'
-		. 'border: 1px solid #' . $params->get('headerbordercolor') . ';'
-		. 'color:#' . $params->get('headertextcolor') . ';'
+		. 'background:#' . $headerbg . ';'
+		. 'border: 1px solid #' . $headerbc . ';'
+		. 'color:#' . $headertc . ';'
 		. '}';
-		$document->addStyleDeclaration($jj_style);
+		$doc->addStyleDeclaration($jj_style);
 		break;
 	case "dark":
-		$document->addStyleSheet(JUri::root() . 'media/mod_accordion/css/accordion-dark.css');
+		$doc->addStyleSheet(JUri::root() . 'media/mod_accordion/css/accordion-dark.css');
 		break;
 	case "bootstrap":
-		$document->addStyleSheet(JUri::root() . 'media/mod_accordion/css/accordion-bootstrap.css');
+		$doc->addStyleSheet(JUri::root() . 'media/mod_accordion/css/accordion-bootstrap.css');
 		break;
 	default:
-		$document->addStyleSheet(JUri::root() . 'media/mod_accordion/css/accordion-light.css');
+		$doc->addStyleSheet(JUri::root() . 'media/mod_accordion/css/accordion-light.css');
 }
 
-$open = $params->get('open', '1') == 1;
 
-JHtml::script('mod_accordion/jjaccordion.js', false, true);
-$document->addScriptDeclaration("jQuery('#accordion" . $id . "').jjaccordion({'open' : " . $open . ", 'id': '" . $id . "'});");
+JHtml::_('script', 'mod_accordion/jjaccordion.js', false, true);
+
+$doc->addScriptDeclaration("
+	jQuery(document).ready(function($){
+		$('#accordion" . $id . "').jjaccordion({
+			'open' : " . $open . ", 
+			'id': '" . $id . "'
+		});
+	});
+");
 
 require JModuleHelper::getLayoutPath('mod_accordion', 'default');

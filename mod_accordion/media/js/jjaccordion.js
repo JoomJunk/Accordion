@@ -1,4 +1,5 @@
 (function($){
+
 	$.fn.jjaccordion = function(options) {
 		// Set some defaults
 		var defaults = {
@@ -10,33 +11,39 @@
 			open: true,
 			speed: 'fast'
 		};
-		var options = $.extend({}, defaults, options);
+		
+		var options 	= $.extend({}, defaults, options);
+		var jjaccordion = $('#accordion' + options.id + ' .' + options.header);
 
-		if (!options.id) throw "Must provide a id.";
+		if (!options.id) 
+		{
+			throw "Must provide an id.";
+		}
 
-		$(document).ready(function($) {
-			$('#accordion' + options.id + ' .' + options.header).toggleClass(options.inactiveheader);
+		jjaccordion.toggleClass(options.inactiveheader);
 
-			if (open)
+		if (open)
+		{
+			jjaccordion.first().toggleClass(options.activeheader).toggleClass(options.inactiveheader);
+			$('#accordion' + options.id + ' .' + options.content).first().slideDown(options.speed).toggleClass(options.opencontent);
+		}
+
+		jjaccordion.on('click', function () {
+			var self = $(this);
+
+			if(self.hasClass(options.inactiveheader)) 
 			{
-				$('#accordion' + options.id + ' .' + options.header).first().toggleClass(options.activeheader).toggleClass(options.inactiveheader);
-				$('#accordion' + options.id + ' .' + options.content).first().slideDown(options.speed).toggleClass(options.opencontent);
+				$('#accordion' + options.id + ' .' + options.activeheader).toggleClass(options.activeheader).toggleClass(options.inactiveheader).next().slideToggle(options.speed).toggleClass(options.opencontent);
+				self.toggleClass(options.activeheader).toggleClass(options.inactiveheader);
+				self.next().slideToggle(options.speed).toggleClass(options.opencontent);
+			} else {
+				self.toggleClass(options.activeheader).toggleClass(options.inactiveheader);
+				self.next().slideToggle(options.speed).toggleClass(options.opencontent);
 			}
-
-			$('#accordion' + options.id + ' .' + options.header).click(function () {
-				var self = $(this);
-
-				if(self.hasClass(options.inactiveheader)) {
-					$('#accordion' + options.id + ' .' + options.activeheader).toggleClass(options.activeheader).toggleClass(options.inactiveheader).next().slideToggle(options.speed).toggleClass(options.opencontent);
-					self.toggleClass(options.activeheader).toggleClass(options.inactiveheader);
-					self.next().slideToggle(options.speed).toggleClass(options.opencontent);
-				} else {
-					self.toggleClass(options.activeheader).toggleClass(options.inactiveheader);
-					self.next().slideToggle(options.speed).toggleClass(options.opencontent);
-				}
-			});
-
-			return false;
 		});
+
+		return false;
+
 	};
+	
 })(jQuery);
