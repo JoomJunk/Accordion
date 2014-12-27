@@ -15,6 +15,9 @@ $ -> Language fix or change
 - -> Removed
 ! -> Note
 
+Version 3.2.0
+- Removed assets directory that should have been removed in 3.0.0
+
 Version 3.1.0
 + Added more ordering options
 # Fixed default parameter values
