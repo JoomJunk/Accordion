@@ -83,41 +83,9 @@ switch ($jj_style)
 		$document->addStyleSheet(JUri::root() . 'media/mod_accordion/css/accordion-light.css');
 }
 
-if ($params->get('open', '1'))
-{
-	$open = "$('#accordion" . $id . " .jjaccordion-header').first().toggleClass('active-header').toggleClass('inactive-header');
-			 $('#accordion" . $id . " .jjaccordion-content').first().slideDown().toggleClass('open-content');";
-}
-else 
-{
-	$open = "";
-}
+$open = $params->get('open', '1') == 1;
 
-$document->addScriptDeclaration("
-	jQuery(document).ready(function($) {
-
-		$('#accordion" . $id . " .jjaccordion-header').toggleClass('inactive-header');
-
-		" . $open . "
-
-		$('#accordion" . $id . " .jjaccordion-header').click(function () {
-			
-			var self = $(this);
-			
-			if(self.is('#accordion" . $id . " .inactive-header')) {
-				$('#accordion" . $id . " .active-header').toggleClass('active-header').toggleClass('inactive-header').next().slideToggle('fast').toggleClass('open-content');
-				self.toggleClass('active-header').toggleClass('inactive-header');
-				self.next().slideToggle('fast').toggleClass('open-content');
-			}
-
-			else {
-				self.toggleClass('active-header').toggleClass('inactive-header');
-				self.next().slideToggle('fast').toggleClass('open-content');
-			}
-		});
-
-		return false;
-	});
-");
+JHtml::script('mod_accordion/jjaccordion.js', false, true);
+$document->addScriptDeclaration("jQuery('#accordion" . $id . "').jjaccordion({'open' : " . $open . ", 'id': '" . $id . "'});");
 
 require JModuleHelper::getLayoutPath('mod_accordion', 'default');
