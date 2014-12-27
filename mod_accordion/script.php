@@ -69,6 +69,12 @@ class Mod_AccordionInstallerScript
 				{
 					$this->update302();
 				}
+
+				// Update to reflect that fact we still shipped the assets file after 3.0.0 - oops!
+				if (version_compare($oldRelease, '3.2.0', '<='))
+				{
+					$this->update320();
+				}
 			}
 		}
 	}
@@ -150,7 +156,7 @@ class Mod_AccordionInstallerScript
 	 *
 	 * @since  3.0.2
 	 */
-	protected function update302()
+	protected function update320()
 	{
 		// Import dependencies
 		jimport('joomla.filesystem.folder');
