@@ -144,6 +144,22 @@ class Mod_AccordionInstallerScript
 	}
 
 	/**
+	 * We never removed the shipped assets directory in 3.0.0 - smooth!
+	 *
+	 * @return  void
+	 *
+	 * @since  3.0.2
+	 */
+	protected function update302()
+	{
+		// Import dependencies
+		jimport('joomla.filesystem.folder');
+
+		// Delete the assets dir properly this time
+		JFolder::delete(JPATH_ROOT . '/modules/'. $this->extension . '/assets');
+	}
+
+	/**
 	 * Builds a standard select query to produce better DRY code in this script.
 	 * This should produce a single unique cell which is json encoded
 	 *
