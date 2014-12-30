@@ -40,7 +40,7 @@
     $.extend(Plugin.prototype, {
         init: function () {
             // The headers for our accordion instance
-            var jjaccordion = this.element.find('.' + this.settings.header);
+            var jjaccordion = $(this.element).find('.' + this.settings.header);
 
             // Ensure all elements are closed on page load
             jjaccordion.toggleClass(this.settings.inactiveheader);
@@ -48,11 +48,11 @@
             // But open the first accordion pane if instructed to do so
             if (open) {
                 jjaccordion.first().toggleClass(this.settings.activeheader).toggleClass(this.settings.inactiveheader);
-                this.element.find('.' + this.settings.content).first().slideDown(this.settings.speed).toggleClass(this.settings.opencontent);
+                $(this.element).find('.' + this.settings.content).first().slideDown(this.settings.speed).toggleClass(this.settings.opencontent);
             }
 
             jjaccordion.on('click', {
-                parent: this.element,
+                parent: $(this.element),
                 options: this.settings
             }, dealWithClick);
         },
